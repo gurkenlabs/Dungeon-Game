@@ -12,7 +12,7 @@ import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.entities.PropState;
 import de.dungeongame.logic.Colission;
 import de.dungeongame.entities.props.Armor;
-import de.dungeongame.entities.props.life;
+import de.dungeongame.entities.props.Life;
 
 import java.util.Collection;
 
@@ -50,7 +50,6 @@ public class Fireball extends Creature implements IUpdateable {
             if (moves < 50) {
                 switch (ProjectileLogic.fd) {
                     case "RIGHT":
-
                         fireball.setLocation(fireball.getX() + 3, fireball.getY());
                         moves++;
                         break;
@@ -88,11 +87,7 @@ public class Fireball extends Creature implements IUpdateable {
 
                 if (p.getCollisionBox().intersects(fireball.getCollisionBox()) && !p.isDead()) {
                     if (p.hasTag("explosive")) {
-
-
                         p.die();
-
-
                     } else {
                         p.hit(50);
 
@@ -101,7 +96,7 @@ public class Fireball extends Creature implements IUpdateable {
                             Prop h;
                             switch (i) {
                                 case 0:
-                                    h = new life("life");
+                                    h = new Life("life");
                                     break;
 
                                 case 1:

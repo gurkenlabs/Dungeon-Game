@@ -85,9 +85,9 @@ public class HUD extends GuiComponent {
 
     private void renderArmor(Graphics2D g) {
         double y = Game.window().getResolution().getHeight() - Game.window().getResolution().getHeight() + PADDING;
-        double x = Game.window().getResolution().getWidth() - (Player.maxArmor * (ARMOR.getWidth() + PADDING * 0.2));
-        for (int i = 0; i < Player.maxArmor; i++) {
-            BufferedImage img = i < Player.armor ? ARMOR : ARMOREMPTY;
+        double x = Game.window().getResolution().getWidth() - (Player.instance().getArmor().getMax().intValue() * (ARMOR.getWidth() + PADDING * 0.2));
+        for (int i = 0; i < Player.instance().getArmor().getMax().intValue(); i++) {
+            BufferedImage img = i < Player.instance().getArmor().get().intValue() ? ARMOR : ARMOREMPTY;
             ImageRenderer.render(g, img, x + i * img.getWidth() + PADDING, y);
         }
     }
@@ -136,7 +136,7 @@ public class HUD extends GuiComponent {
 
         g.setColor(new Color(155, 146, 146, fader));
         g.setStroke(new BasicStroke(50));
-        g.setFont(f);
+        g.setFont(UIConstants.uiFont);
 
         TextRenderer.render(g, "this door is locked", Game.window().getWidth() / 2 - 30, PADDING * 4);
 
@@ -147,7 +147,7 @@ public class HUD extends GuiComponent {
 
         g.setColor(new Color(155, 146, 146, fader));
         g.setStroke(new BasicStroke(50));
-        g.setFont(f);
+        g.setFont(UIConstants.uiFont);
 
         TextRenderer.render(g, "you found the key to the " + InteractableObjects.KeyPickUpName, Game.window().getWidth() / 2 - 30, PADDING * 4);
 

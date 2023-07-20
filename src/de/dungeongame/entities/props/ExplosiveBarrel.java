@@ -41,7 +41,7 @@ public class ExplosiveBarrel extends Prop{
         this.hit(100);
 
 
-        Game.audio().playSound(Resources.sounds().get("mixkit-shot-light-explosion-1682"), this);
+        Game.audio().playSound(Resources.sounds().get("explosion-1.wav"), this);
         this.animations().add(new Animation(Resources.spritesheets().get(explodeAnimationName), false));
 
         this.setCollisionBoxHeight(20);
@@ -52,9 +52,7 @@ public class ExplosiveBarrel extends Prop{
 
         //Damages Player
         if (this.getCollisionBox().intersects(Player.instance().getBoundingBox())) {
-
             Player.instance().damage(5);
-
         }
 
 

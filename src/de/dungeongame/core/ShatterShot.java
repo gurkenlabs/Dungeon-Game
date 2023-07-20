@@ -9,7 +9,7 @@ import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.entities.PropState;
 import de.dungeongame.logic.Colission;
-import de.dungeongame.entities.props.life;
+import de.dungeongame.entities.props.Life;
 
 import java.awt.geom.Point2D;
 import java.util.Collection;
@@ -140,7 +140,7 @@ public class ShatterShot extends Creature implements IUpdateable {
                     } else {
                         p.hit(50);
                         if (p.getState() == PropState.DESTROYED && !p.hasTag("looted")) {
-                            life h = new life("life");
+                            Life h = new Life("life");
                             Game.world().environment().add(h);
                             h.setLocation(p.getX(), p.getY());
                             p.addTag("looted");

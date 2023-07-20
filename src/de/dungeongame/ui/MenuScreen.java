@@ -63,8 +63,6 @@ public class MenuScreen extends Screen implements IUpdateable {
         Game.graphics().setBaseRenderScale(8f * Game.window().getResolutionScale());
         this.mainMenu.incFocus();
         Game.world().loadEnvironment("titlescreen");
-
-
     }
 
     @Override
@@ -87,7 +85,7 @@ public class MenuScreen extends Screen implements IUpdateable {
     private void startGame() {
         this.mainMenu.setEnabled(false);
         Game.window().getRenderComponent().fadeOut(1500);
-        Game.audio().playMusic(Resources.sounds().get("85568__joelaudio__dragon-roar.wav"));
+        Game.audio().playSound(Resources.sounds().get("dragon.wav"));
         Game.loop().perform(3500, () -> {
             Game.screens().display("INGAME-SCREEN");
             Game.window().getRenderComponent().fadeIn(1500);
@@ -98,8 +96,6 @@ public class MenuScreen extends Screen implements IUpdateable {
             //beim ersten mal kommt er nicht aus einer Tür
             Game.world().camera().setFocus(Game.world().environment().getCenter());
             Game.graphics().setBaseRenderScale(3);
-
-
         });
     }
 
@@ -117,7 +113,6 @@ public class MenuScreen extends Screen implements IUpdateable {
     public void suspend() {
         super.suspend();
         Game.loop().detach(this);
-        Game.audio().stopMusic();
     }
 
 

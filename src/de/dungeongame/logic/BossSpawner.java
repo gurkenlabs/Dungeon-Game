@@ -30,7 +30,8 @@ public class BossSpawner {
             public void activated(TriggerEvent event) {
                 bossSpawn.spawn(Dragon.instance());
                 Game.world().camera().shake(8, 0, 600);
-                Game.audio().playSound(Resources.sounds().get("misc/85568__joelaudio__dragon-roar.wav"));
+                Game.audio().playSound(Resources.sounds().get("dragon.wav"));
+                Game.audio().playMusic(Resources.sounds().get("battle-music.mp3"));
                 triggered = true;
             }
 

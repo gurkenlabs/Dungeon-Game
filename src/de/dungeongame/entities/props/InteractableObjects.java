@@ -11,7 +11,6 @@ import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.Prop;
 import de.gurkenlabs.litiengine.resources.Resources;
-
 import java.util.Collection;
 
 public class InteractableObjects {
@@ -39,14 +38,13 @@ public class InteractableObjects {
       // to destroyed
 
       if (Player.instance().getCollisionBox().intersects(collider.getCollisionBox())
-          && !p.isDead()) {
+        && !p.isDead()) {
         p.hit(100);
         Game.audio()
-            .playSound(
-                Resources.sounds().get("misc/573654__the-frisbee-of-peace__wooden-chest-open.wav"));
+          .playSound(Resources.sounds().get("pickup-1.wav"));
 
         // spawn the Loot that's in the chest
-        life h = new life("life");
+        Life h = new Life("life");
         Game.world().environment().add(h);
         h.setLocation(p.getX() - 5, p.getY() - 5);
         p.setCollision(true);
@@ -57,22 +55,21 @@ public class InteractableObjects {
 
       pr.setCollision(false);
       if (pr.getBoundingBox().intersects(Player.instance().getBoundingBox())
-          && Game.time().since(lastDoorInteraction) > 300
-          && GameManager.anzahlMonster == 0) {
+        && Game.time().since(lastDoorInteraction) > 300
+        && GameManager.anzahlMonster == 0) {
         if (pr.hasTag("lock")) {
           for (int i = 0; i < Keys.length; i++) {
-            if (Keys[i]&&pr.hasTag(String.valueOf(i))) {
+            if (Keys[i] && pr.hasTag(String.valueOf(i))) {
 
-
-                pr.removeTag("lock");
-                break;
-              }
+              pr.removeTag("lock");
+              break;
             }
+          }
 
           if (pr.hasTag("lock")) {
 
             Game.audio()
-                .playSound(Resources.sounds().get("misc/219487__jarredgibb__door-cupboard-07.wav"));
+              .playSound(Resources.sounds().get("door-1.wav"));
             HUD.renderLock = true;
             lastDoorInteraction = Game.loop().getTicks();
             return;
@@ -110,38 +107,43 @@ public class InteractableObjects {
       }
     }
     // Tutorial char interaction
-    if (Player.instance().getBoundingBox().intersects(StoryChar.instance().getCollisionBox())&& !StoryChar.instance().getTalking()) {
+    if (Player.instance().getBoundingBox().intersects(StoryChar.instance().getCollisionBox())
+      && !StoryChar.instance().getTalking()
+      && Game.world().environment().getMap().getName().equals("atrium")) {
       StoryChar.instance().setTalking(true);
       Game.world().environment().remove(Game.world().environment().getProp("marker"));
       StoryChar.instance().speak(Resources.strings().get("storychar.greet"));
-      Game.loop().perform(8000,() ->
+      Game.loop().perform(8000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut1"))
       );
-      Game.loop().perform(16000,() ->
+      Game.loop().perform(16000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut2"))
       );
-      Game.loop().perform(24000,() ->
+      Game.loop().perform(24000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut3"))
       );
-      Game.loop().perform(32000,() ->
+      Game.loop().perform(32000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut4"))
       );
-      Game.loop().perform(40000,() ->
-        StoryChar.instance().speak(Resources.strings().get("storychar.tut5"))
+      Game.loop().perform(40000, () -> {
+          StoryChar.instance().speak(Resources.strings().get("storychar.tut5"));
+          GameManager.spawnEnemy(Game.world().environment());
+        }
       );
-      Game.loop().perform(48000,() ->
+      Game.loop().perform(48000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut6"))
       );
-      Game.loop().perform(56000,() ->
+      Game.loop().perform(56000, () ->
         StoryChar.instance().speak(Resources.strings().get("storychar.tut7"))
       );
-      Game.loop().perform(64000,() -> {
+      Game.loop().perform(64000, () -> {
         StoryChar.instance().speak(Resources.strings().get("storychar.tut8"));
         StoryChar.instance().setTalking(false);
       });
 
     }
   }
+
   // called by key to render the Message
   public static void PickUpKey(String Name) {
     KeyPickUpName = Name;

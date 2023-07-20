@@ -27,7 +27,6 @@ public class ColectablesScreen extends Screen implements IUpdateable {
         this.collect.setEnabled(true);
         super.prepare();
         Game.loop().attach(this);
-
         Game.window().getRenderComponent().setBackground(Color.BLACK);
         Game.graphics().setBaseRenderScale(6f * Game.window().getResolutionScale());
 
@@ -49,7 +48,6 @@ public class ColectablesScreen extends Screen implements IUpdateable {
     public void suspend() {
         super.suspend();
         Game.loop().detach(this);
-        Game.audio().stopMusic();
     }
 
     public void renderText(Graphics2D g, double x, double y) {

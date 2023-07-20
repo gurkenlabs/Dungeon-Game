@@ -64,17 +64,6 @@ public class Main {
     CreatureMapObjectLoader.registerCustomCreatureType(Rat.class);
     CreatureMapObjectLoader.registerCustomCreatureType(StoryChar.class);
 
-    float safe = Game.config().sound().getSoundVolume();
-    Game.config().sound().setSoundVolume(0f);
-
-    Game.audio().playSound(Resources.sounds().get("219487__jarredgibb__door-cupboard-07.wav"));
-    Game.audio().playSound(Resources.sounds().get("85568__joelaudio__dragon-roar.wav"));
-    Game.audio()
-        .playSound(Resources.sounds().get("431174__highpixel__fireball-explosion.wav"));
-    Game.audio()
-        .playSound(
-            Resources.sounds().get("573654__the-frisbee-of-peace__wooden-chest-open.wav"));
-
     // loads the inserted map path
     // file must be a tmx file, and loaded in /src
     Game.world().loadEnvironment("titlescreen");
@@ -84,12 +73,5 @@ public class Main {
     Game.world().camera().setFocus(Game.world().environment().getCenter());
 
     Game.start();
-    Game.audio().playSound(Resources.sounds().get("mixkit-shot-light-explosion-1682"));
-    Game.loop()
-        .perform(
-            1500,
-            () ->
-              Game.config().sound().setSoundVolume(safe)
-            );
   }
 }

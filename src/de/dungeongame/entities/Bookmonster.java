@@ -9,7 +9,7 @@ import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.entities.Prop;
 import de.dungeongame.entities.props.Armor;
-import de.dungeongame.entities.props.life;
+import de.dungeongame.entities.props.Life;
 
 
 @CombatInfo(hitpoints = 100)
@@ -34,7 +34,7 @@ public class Bookmonster extends Creature implements IUpdateable {
             Prop h;
             switch (i) {
                 case 0:
-                    h = new life("life");
+                    h = new Life("life");
                     break;
 
                 case 1:
