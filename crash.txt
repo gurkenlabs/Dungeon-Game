@@ -1,12 +1,29 @@
-Fri Jul 21 00:05:59 CEST 2023 main threw an exception:
-java.lang.NullPointerException
-	at java.base/java.util.Objects.requireNonNull(Objects.java:233)
-	at de.gurkenlabs.litiengine.sound.LoopedTrack.<init>(LoopedTrack.java:28)
-	at de.gurkenlabs.litiengine.sound.SoundEngine.playMusic(SoundEngine.java:96)
-	at de.dungeongame.ui.MenuScreen.prepare(MenuScreen.java:66)
-	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.display(ScreenManager.java:133)
-	at de.gurkenlabs.litiengine.gui.screens.ScreenManager.display(ScreenManager.java:173)
-	at de.dungeongame.core.Main.main(Main.java:83)
+Tue Aug 01 01:32:39 CEST 2023 main threw an exception:
+java.lang.ExceptionInInitializerError
+	at de.dungeongame.core.Main.main(Main.java:49)
+Caused by: de.gurkenlabs.litiengine.resources.ResourceLoadException: javax.imageio.IIOException: Can't get input stream from URL!
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:372)
+	at java.base/java.util.concurrent.ConcurrentHashMap.computeIfAbsent(ConcurrentHashMap.java:1708)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:256)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.get(ResourcesContainer.java:191)
+	at de.dungeongame.ui.SkinSelectionScreen.<clinit>(SkinSelectionScreen.java:28)
+	... 1 more
+Caused by: javax.imageio.IIOException: Can't get input stream from URL!
+	at java.desktop/javax.imageio.ImageIO.read(ImageIO.java:1407)
+	at de.gurkenlabs.litiengine.resources.Images.load(Images.java:48)
+	at de.gurkenlabs.litiengine.resources.Images.load(Images.java:12)
+	at de.gurkenlabs.litiengine.resources.ResourcesContainer.loadResource(ResourcesContainer.java:370)
+	... 5 more
+Caused by: java.io.FileNotFoundException: E:\Git\Dungeon-Game\resources\images\hud\goldfrane.png (The system cannot find the file specified)
+	at java.base/java.io.FileInputStream.open0(Native Method)
+	at java.base/java.io.FileInputStream.open(FileInputStream.java:219)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:158)
+	at java.base/java.io.FileInputStream.<init>(FileInputStream.java:112)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.connect(FileURLConnection.java:84)
+	at java.base/sun.net.www.protocol.file.FileURLConnection.getInputStream(FileURLConnection.java:180)
+	at java.base/java.net.URL.openStream(URL.java:1317)
+	at java.desktop/javax.imageio.ImageIO.read(ImageIO.java:1405)
+	... 8 more
 
 ====Runtime Information====
 Operating System: Windows 11
@@ -15,11 +32,11 @@ Operating System: Windows 11
 Memory:
 	Max heap size: 4,0 GiB
 	Current heap size: 512,0 MiB
-	Heap used: 45,9 MiB
-	Free heap: 466,1 MiB
+	Heap used: 208,9 MiB
+	Free heap: 303,1 MiB
 Java Version: OpenJDK Runtime Environment 20.0.1+9-29 
 	Vendor: Oracle Corporation
-Uptime: PT1.612S
+Uptime: PT2.742S
 Screens: 2
 	Screen 0: 1920x1080@60hz
 	Screen 1: 1920x1080@60hz

@@ -58,5 +58,61 @@
     <property name="tags" value="target"/>
    </properties>
   </object>
+  <object id="5" type="CREATURE" x="202" y="308.5" width="4" height="11">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionboxHeight" type="float" value="4.4"/>
+    <property name="collisionboxWidth" value="13.2"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="spritesheetName" value="ratte1"/>
+   </properties>
+  </object>
+  <object id="6" type="CREATURE" x="368" y="317" width="5" height="12">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionboxHeight" value="5.2"/>
+    <property name="collisionboxWidth" value="14.6"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="scaling" type="bool" value="false"/>
+    <property name="spritesheetName" value="ratte1"/>
+   </properties>
+  </object>
+  <object id="7" type="CREATURE" x="306" y="271" width="3" height="10">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionAlign" value="CENTER"/>
+    <property name="collisionType" value="DYNAMIC"/>
+    <property name="collisionValign" value="DOWN"/>
+    <property name="collisionboxHeight" value="4.4"/>
+    <property name="collisionboxWidth" value="12.2"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="scaling" type="bool" value="false"/>
+    <property name="spawnDirection" value="UNDEFINED"/>
+    <property name="spritesheetName" value="ratte1"/>
+   </properties>
+  </object>
+  <object id="8" type="CREATURE" x="234" y="387" width="4" height="11">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionboxHeight" type="float" value="4.4"/>
+    <property name="collisionboxWidth" value="14.799999999999999"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="spritesheetName" value="ratte1"/>
+   </properties>
+  </object>
+  <object id="9" type="CREATURE" x="372" y="383" width="4" height="11">
+   <properties>
+    <property name="addShadow" type="bool" value="true"/>
+    <property name="collision" type="bool" value="true"/>
+    <property name="collisionboxHeight" type="float" value="4.4"/>
+    <property name="collisionboxWidth" value="13.799999999999999"/>
+    <property name="indestructible" type="bool" value="false"/>
+    <property name="spritesheetName" value="ratte1"/>
+   </properties>
+  </object>
  </objectgroup>
 </map>

@@ -50,7 +50,7 @@ public class Slime extends Creature implements IUpdateable {
       Prop h;
       switch (i) {
         case 0:
-          h = new Life("life");
+          h = new Life();
           break;
 
         case 1:

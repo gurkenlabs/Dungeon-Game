@@ -74,7 +74,7 @@ public class ShatterShards extends Creature implements IUpdateable {
                     } else {
                         p.hit(20);
                         if (p.getState() == PropState.DESTROYED && !p.hasTag("looted")) {
-                            Life h = new Life("life");
+                            Life h = new Life();
                             Game.world().environment().add(h);
                             h.setLocation(p.getX(), p.getY());
                             p.addTag("looted");

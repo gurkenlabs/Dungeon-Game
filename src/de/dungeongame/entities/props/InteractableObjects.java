@@ -44,7 +44,7 @@ public class InteractableObjects {
           .playSound(Resources.sounds().get("pickup-1.wav"));
 
         // spawn the Loot that's in the chest
-        Life h = new Life("life");
+        Life h = new Life();
         Game.world().environment().add(h);
         h.setLocation(p.getX() - 5, p.getY() - 5);
         p.setCollision(true);

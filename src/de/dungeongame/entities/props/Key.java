@@ -1,29 +1,25 @@
 package de.dungeongame.entities.props;
 
-import de.dungeongame.entities.Player;
-import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.Valign;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
-import de.gurkenlabs.litiengine.entities.Prop;
+import de.gurkenlabs.litiengine.physics.Collision;
 
-@CollisionInfo(collision = false, valign = Valign.MIDDLE,collisionBoxWidth = 10,collisionBoxHeight = 10)
-public class Key extends Prop implements IUpdateable {
-    private int opens;
-    private String Name;
-    public Key(int DoorIndex,String UnlockedRoom) {
-        super("Key");
-        this.setSize(64, 64);
-        opens = DoorIndex;
-        Name = UnlockedRoom;
-    }
+@CollisionInfo(collision = true, collisionType = Collision.DYNAMIC, valign = Valign.MIDDLE, collisionBoxWidth = 10, collisionBoxHeight = 10)
+public class Key extends Loot {
 
-    @Override
-    public void update() {
-        if (this.getCollisionBox().intersects(Player.instance().getCollisionBox())) {
-            Game.world().environment().remove(this);
-            InteractableObjects.Keys[opens] = true;
-            InteractableObjects.PickUpKey(Name);
-        }
-    }
+  private int opens;
+  private String Name;
+
+  public Key(int doorIndex, String unlockedRoom) {
+    super("Key");
+    this.setSize(64, 64);
+    opens = doorIndex;
+    Name = unlockedRoom;
+  }
+
+  @Override
+  protected void pickup() {
+    InteractableObjects.Keys[opens] = true;
+    InteractableObjects.PickUpKey(Name);
+  }
 }

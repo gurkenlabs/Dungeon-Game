@@ -1,28 +1,19 @@
 package de.dungeongame.entities.props;
 
 import de.dungeongame.entities.Player;
-import de.gurkenlabs.litiengine.Game;
-import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.attributes.Modification;
-import de.gurkenlabs.litiengine.entities.AnimationInfo;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
-import de.gurkenlabs.litiengine.entities.Prop;
+import de.gurkenlabs.litiengine.physics.Collision;
 
-@CollisionInfo(collision = false)
-@AnimationInfo(spritePrefix = "prop-life")
+@CollisionInfo(collision = true, collisionType = Collision.DYNAMIC)
+public class Life extends Loot {
 
-public class Life extends Prop implements IUpdateable {
-
-  public Life(String spritesheetName) {
-    super(spritesheetName);
+  public Life() {
+    super("life");
   }
 
   @Override
-  public void update() {
-    if (getBoundingBox().intersects(Player.instance().getCollisionBox())) {
-      Game.world().environment().remove(this);
-      Player.instance().getHitPoints().modifyBaseValue(Modification.ADD, 5);
-    }
-
+  protected void pickup() {
+    Player.instance().getHitPoints().modifyBaseValue(Modification.ADD, 5);
   }
 }

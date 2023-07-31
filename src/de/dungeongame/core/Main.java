@@ -7,11 +7,10 @@ import de.dungeongame.entities.props.BreakableWall;
 import de.dungeongame.entities.props.ExplosiveBarrel;
 import de.dungeongame.entities.props.Spikes;
 import de.dungeongame.logic.BossSpawner;
-import de.dungeongame.logic.CollectablesManager;
 import de.dungeongame.logic.GameManager;
-import de.dungeongame.ui.ColectablesScreen;
 import de.dungeongame.ui.InGameScreen;
 import de.dungeongame.ui.MenuScreen;
+import de.dungeongame.ui.SkinSelectionScreen;
 import de.dungeongame.ui.UserInput;
 import de.gurkenlabs.litiengine.Game;
 import de.gurkenlabs.litiengine.configuration.DisplayMode;
@@ -20,10 +19,10 @@ import de.gurkenlabs.litiengine.environment.PropMapObjectLoader;
 import de.gurkenlabs.litiengine.graphics.Camera;
 import de.gurkenlabs.litiengine.gui.GuiProperties;
 import de.gurkenlabs.litiengine.resources.Resources;
-
-import java.awt.*;
+import java.awt.BasicStroke;
 
 public class Main {
+
   public static void main(String[] args) {
 
     Game.init(args);
@@ -31,9 +30,6 @@ public class Main {
     Game.window().setIcon(Resources.images().get("misc/icon.png"));
 
     UserInput.Input();
-
-    CollectablesManager.init();
-
 
     // load the Liti Library
     Resources.load("game_v4.litidata");
@@ -50,7 +46,7 @@ public class Main {
     // create new Screen from class InGameScreen()
     Game.screens().add(new InGameScreen());
     Game.screens().add(new MenuScreen());
-    Game.screens().add(new ColectablesScreen());
+    Game.screens().add(new SkinSelectionScreen());
     Camera c1 = new Camera();
 
     c1.getViewport();

@@ -4,39 +4,39 @@ import de.dungeongame.core.SpellManager;
 import de.gurkenlabs.litiengine.IUpdateable;
 import de.gurkenlabs.litiengine.attributes.Modification;
 import de.gurkenlabs.litiengine.attributes.RangeAttribute;
-import de.gurkenlabs.litiengine.entities.CollisionBox;
 import de.gurkenlabs.litiengine.entities.CollisionInfo;
 import de.gurkenlabs.litiengine.entities.CombatInfo;
 import de.gurkenlabs.litiengine.entities.Creature;
 import de.gurkenlabs.litiengine.entities.EntityInfo;
 import de.gurkenlabs.litiengine.entities.MovementInfo;
 import de.gurkenlabs.litiengine.input.KeyboardEntityController;
-import de.gurkenlabs.litiengine.physics.IMovementController;
+import de.gurkenlabs.litiengine.physics.MovementController;
 
 @CollisionInfo(collisionBoxWidth = 21, collisionBoxHeight = 5, collision = true)
 @MovementInfo(velocity = 80)
 @EntityInfo(width = 32, height = 32)
 @CombatInfo(hitpoints = 10)
-
 public class Player extends Creature implements IUpdateable {
 
   private RangeAttribute<Integer> armor;
-  static CollisionBox c = new CollisionBox(10, 10);
+  private Skin skin;
+  private Profession profession;
   private static Player instance;
 
 
   private Player() {
     super("Hero");
     this.armor = new RangeAttribute<>(10, 0, 0);
+    setSkin(Skin.ONE);
+    setProfession(Profession.WIZARD);
+    setController(MovementController.class, new KeyboardEntityController<>(this));
   }
 
   public static Player instance() {
     if (instance == null) {
       instance = new Player();
-
     }
     return instance;
-
   }
 
   public RangeAttribute getArmor() {
@@ -65,11 +65,7 @@ public class Player extends Creature implements IUpdateable {
 
   @Override
   public void update() {
-    c.setCollision(false);
-    c.setLocation(Player.instance().getLocation());
-
     if (this.getHitPoints().getRelativeCurrentValue() == 0) {
-
       this.die();
     }
     if (SpellManager.FireballCooldown > 0) {
@@ -81,8 +77,25 @@ public class Player extends Creature implements IUpdateable {
   }
 
   @Override
-  protected IMovementController createMovementController() {
+  public String getSpritesheetName() {
+    return getProfession() == null ? super.getSpritesheetName()
+      : String.format("%s%d", getProfession().name().toLowerCase(), getSkin().ordinal() + 1);
+  }
 
-    return new KeyboardEntityController<>(this);
+  public Skin getSkin() {
+    return skin;
+  }
+
+  public void setSkin(Skin skin) {
+    this.skin = skin;
+  }
+
+  public Profession getProfession() {
+    return profession;
+  }
+
+  public void setProfession(Profession profession) {
+    this.profession = profession;
   }
 }
+
