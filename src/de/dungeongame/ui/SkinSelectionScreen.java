@@ -19,7 +19,6 @@ public class SkinSelectionScreen extends Screen {
   private ImageComponent skinSelectorBackground;
   private ImageComponent previousProfession, nextProfession;
   private ImageComponent previousSkin, nextSkin;
-  private CreatureAnimationController playerAnims;
 
   private static BufferedImage daggerArrowDown = Resources.images()
     .get("resources/images/hud/daggerarrow.png");
@@ -34,8 +33,6 @@ public class SkinSelectionScreen extends Screen {
 
   @Override
   protected void initializeComponents() {
-    this.playerAnims = new CreatureAnimationController<>(Player.instance(), true);
-
     double selectorWidth = Game.window().getResolution().getWidth() * 2 / 10d;
     double selectorHeight = Game.window().getResolution().getHeight() * 4 / 10d;
 
@@ -101,7 +98,7 @@ public class SkinSelectionScreen extends Screen {
   @Override
   public void prepare() {
     super.prepare();
-    Game.loop().attach(playerAnims);
+    Game.loop().attach(Player.instance().animations());
 
     playAnim();
   }
@@ -137,13 +134,13 @@ public class SkinSelectionScreen extends Screen {
   }
 
   private void playAnim() {
-    if (!playerAnims.hasAnimation(getCurrentAnimationName())) {
-      playerAnims.add(new Animation(Resources.spritesheets().get(getCurrentAnimationName()), true));
+    if (!Player.instance().animations().hasAnimation(getCurrentAnimationName())) {
+      Player.instance().animations().add(new Animation(Resources.spritesheets().get(getCurrentAnimationName()), true));
     }
-    playerAnims.play(getCurrentAnimationName());
-    playerAnims.getCurrent().onKeyFrameChanged(
+    Player.instance().animations().play(getCurrentAnimationName());
+    Player.instance().animations().getCurrent().onKeyFrameChanged(
       (l, c) ->
-        skinSelector.setImage(playerAnims.getCurrentImage((int) skinSelector.getWidth(),
+        skinSelector.setImage(Player.instance().animations().getCurrentImage((int) skinSelector.getWidth(),
           (int) skinSelector.getHeight()))
     );
   }
